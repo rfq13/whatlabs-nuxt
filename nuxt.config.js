@@ -44,6 +44,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {src:'~/plugins/vue-notification.js',ssr:false},
+    {src:'~/plugins/vue-eventhub.js',ssr:false},
     // {src:'~/plugins/axios.js'}
   ],
 
@@ -67,7 +68,8 @@ export default {
         token: {
           property: 'token',
           required: true,
-          type: 'Bearer'
+          type: 'Bearer',
+          maxAge:false,
         },
         user: {
           property: 'user',

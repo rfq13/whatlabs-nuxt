@@ -3,16 +3,15 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-title">
-                    <span>Caonnection</span>
+                    <span>Connection</span>
                     <a href="javascript:void(0)" class="float-right btn btn-primary btn-sm" @click="dynamicallyInsert">add</a>
-                    <a href="javascript:void(0)" class="float-right btn btn-warning mr-2 btn-sm" @click="change">add</a>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row d-flex mr-auto" ref="body">
                     <div  v-for="(sess) in wa_sessions" :key="sess._id">
-                        <cards v-if="sess.ready" :title="sess._id" :desc="sess.description"  imgSrc="https://docs.vuejs.id/images/logo.png" btnClass='btn btn-primary'>Ready dong!</cards>
-                        <cards v-else :title="sess._id" :desc="sess.description" :imgSrc="qrSrc[sess._id]" btnClass='btn btn-primary'>Hello</cards>
+                        <cards v-if="sess.ready" :session_status="statuses" :title="sess._id" :sid="sess._id" :desc="sess.description" imgSrc="https://docs.vuejs.id/images/logo.png" btnClass='btn btn-primary'>Hello</cards>
+                        <cards v-else :session_status="statuses" :title="sess._id" :sid="sess._id" :desc="sess.description" :imgSrc="qrSrc[sess._id]" btnClass='btn btn-primary'>Hello</cards>
                     </div>
                     <!-- <cards v-for="sess in wa_sessions" :key="sess._id" v-bind:imgSrc="testSrc['qewan']" btnClass='btn btn-primary'>Hello</cards> -->
                 </div>
@@ -42,7 +41,8 @@ export default {
     data(){
         return{
             qrSrc:{},
-            testSrc:{qewan:'tolol'}
+            thanksMessage: '',
+            statuses:{}
         }
     },
     components:{
@@ -53,19 +53,33 @@ export default {
     },
     created(){
         console.log('created');
+        //listen
     },
     beforeMount() {
         console.log('before mounted');
     },
     mounted(){
-        console.log('mounted');
         
         const vm = this;
         vm.socket = this.$nuxtSocket({name:'main'}); 
         const io = vm.socket;
 
         io.on('message',(msg)=>{
-            console.log(msg);
+            const thisStts = this.statuses;
+            const leng = Object.keys(thisStts).length
+            const upd = [];
+            if (leng > 0) {
+                thisStts.forEach((el,i) => {
+                    const ate = {id:el.id,text:el.text}
+                    upd.push(ate)
+                });
+            }
+            upd.push(msg);
+
+            this.statuses=upd;
+            // this.$set(this.statuses, msg.id, msg.text)
+            console.log(typeof(upd));
+            console.log(this.statuses,'nih statuses');
         })
 
         io.on('init',(data)=>{
@@ -80,8 +94,24 @@ export default {
 
         io.on('create-client',async (client)=>{
             await this.getWaSessionsData();
-            // console.log(client,'ki lo client e');
+            console.log('create-client nich!');
         })
+
+        io.on('remove-session', id =>{
+            this.$set(this.qrSrc, id, undefined)
+        })
+
+        io.on('authenticated', async id =>{
+            this.$set(this.qrSrc, id, "https://docs.vuejs.id/images/logo.png")
+        })
+
+        vm.$eventHub.on('closecard', sessID => {
+            if (confirm('yakin hapus sessin?')) {
+                console.log('it is a callbacke',sessID)
+                io.emit('remove-session',sessID);
+
+            }
+        });
 
     },
     methods: {
@@ -95,20 +125,9 @@ export default {
 
             io.emit('create-session',item);
         },
-        assignID(){
-            // console.log(this.qrSrc,'sebelum');
-            this.wa_sessions.forEach(sess => {
-                this.qrSrc[sess._id] = undefined;
-            });
-            // console.log(this.qrSrc,'sesudah');
+        tell(){
+            console.log('langsre');
         },
-        changeImg(key){
-            var res = key.split(" ");
-            this[res[0]][1] = res[2];
-        },
-        change(){
-            this.changeImg(`testSrc 1 ${'https://forum.vuejs.org/uploads/default/original/2X/5/555257b8c5e7ecf34ce4f9b952eeaf006adfa339.png'}`);
-        }
     }
 }
 </script>
