@@ -9,6 +9,9 @@ export default {
     htmlAttrs: {
       lang: 'en'
     },
+    bodyAttrs: {
+      class:"bg-gradient-primary"
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -45,6 +48,7 @@ export default {
   plugins: [
     {src:'~/plugins/vue-notification.js',ssr:false},
     {src:'~/plugins/vue-eventhub.js',ssr:false},
+    {src:'~/plugins/vue-inline-edit.js',ssr:false},
     // {src:'~/plugins/axios.js'}
   ],
 
@@ -53,15 +57,20 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/color-mode',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    '@nuxtjs/bootstrap-vue',
+    // '@nuxtjs/bootstrap-vue',
     'nuxt-socket-io',
+    'bootstrap-vue/nuxt',
   ],
+  bootstrapVue: {
+    icons: true
+  },
   auth: {
     strategies: {
       local: {
@@ -98,7 +107,8 @@ export default {
   },
 
   router: {
-    middleware: ['auth']
+    middleware: ['auth'],
+    linkActiveClass: 'active'
   },
   
 }

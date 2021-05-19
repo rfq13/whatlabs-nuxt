@@ -30,33 +30,33 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li :class="$nuxt.$route.path.includes('users') ? 'nav-item active' : 'nav-item' ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-user"></i>
                     <span>Users</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" :class="$nuxt.$route.path.includes('users') ? 'collapse show' : 'collapse' " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Pages:</h6>
-                        <NuxtLink class="collapse-item" to="users">Home</NuxtLink>
-                        <NuxtLink class="collapse-item" to="users/connection">Connect</NuxtLink>
+                        <NuxtLink class="collapse-item" to="/users/lists">Home</NuxtLink>
+                        <NuxtLink class="collapse-item" to="/users/connection">Connect</NuxtLink>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li :class="$nuxt.$route.path.includes('utilities') ? 'nav-item active' : 'nav-item' ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Utilities</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseUtilities" :class="$nuxt.$route.path.includes('utilities') ? 'collapse show' : 'collapse' " aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <NuxtLink class="collapse-item" to="/utilities/conversations">Conversations</NuxtLink>
                         <a class="collapse-item" href="utilities-border.html">Borders</a>
                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
@@ -117,11 +117,11 @@
 
             <!-- Sidebar Message -->
             <div class="sidebar-card">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
+                kimpulpress.net
+                <!-- <img class="sidebar-card-illustration mb-2" src="~/assets/icons/undraw_rocket.svg" alt="">
                 <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a> -->
             </div>
-
         </ul>
         <!-- End of Sidebar -->
 </template>
@@ -145,6 +145,18 @@ a.nuxt-link-exact-active {
 
 <script>
 export default {
-    
+    data(){
+      return{
+      }
+    },
+    mounted(){
+        $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+            $("body").toggleClass("sidebar-toggled");
+            $(".sidebar").toggleClass("toggled");
+            if ($(".sidebar").hasClass("toggled")) {
+            $('.sidebar .collapse').collapse('hide');
+            };
+        });
+    }
 }
 </script>

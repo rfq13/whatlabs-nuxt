@@ -8,7 +8,6 @@
         <Nuxt />
       </div>
     </div>
-    <div v-html="scripts"></div>
   </div>
 </template>
 <script>
@@ -16,12 +15,12 @@
   import Header from '@/components/layouts/Header.vue';
   import Sidebar from '@/components/layouts/Sidebar.vue';
   export default {
+    colorMode: 'light',
     computed: {
       ...mapGetters(['isAuthenticated', 'loggedInUser'])
     },
     data(){
       return{
-        scripts: "<script src='/js/sb-admin-2.min.js'><\/script>"
       }
     },
    components:{

@@ -61,8 +61,8 @@ export default {
             default:'/loading.gif'
         },
         session_status:{
-            type:Object,
-            default:()=>{}
+            // type: Array,
+            default: () => []
         }
     },
     created(){

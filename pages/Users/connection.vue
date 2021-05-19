@@ -49,14 +49,14 @@ export default {
         "cards":Cards
     },
     beforeCreate(){
-        console.log('before created');
+        // console.log('before created');
     },
     created(){
-        console.log('created');
+        // console.log('created');
         //listen
     },
     beforeMount() {
-        console.log('before mounted');
+        // console.log('before mounted');
     },
     mounted(){
         
@@ -77,9 +77,6 @@ export default {
             upd.push(msg);
 
             this.statuses=upd;
-            // this.$set(this.statuses, msg.id, msg.text)
-            console.log(typeof(upd));
-            console.log(this.statuses,'nih statuses');
         })
 
         io.on('init',(data)=>{
@@ -89,12 +86,12 @@ export default {
         io.on('qr',(qr)=>{
             // this.testSrc['qewan'] = qr.src;
             this.$set(this.qrSrc, qr.id, qr.src)
-            console.log(qr);
+            // console.log(qr);
         })
 
         io.on('create-client',async (client)=>{
             await this.getWaSessionsData();
-            console.log('create-client nich!');
+            // console.log('create-client nich!');
         })
 
         io.on('remove-session', id =>{
@@ -106,8 +103,8 @@ export default {
         })
 
         vm.$eventHub.on('closecard', sessID => {
-            if (confirm('yakin hapus sessin?')) {
-                console.log('it is a callbacke',sessID)
+            if (confirm('yakin hapus session?')) {
+                console.log('it is a callbacke',sessID);
                 io.emit('remove-session',sessID);
 
             }
@@ -126,7 +123,7 @@ export default {
             io.emit('create-session',item);
         },
         tell(){
-            console.log('langsre');
+            // console.log('langsre');
         },
     }
 }

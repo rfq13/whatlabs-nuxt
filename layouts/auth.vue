@@ -1,9 +1,8 @@
 <template>
-  <div id="wrapper" class="bg-gradient-primary">
-    <div class="container">
-        <Nuxt />
-    </div>
-    <!-- <div v-html="scripts"></div> -->
+  <div id="wrapper">
+    <!-- <b-container> -->
+          <Nuxt />
+    <!-- </b-container> -->
   </div>
 </template>
 
