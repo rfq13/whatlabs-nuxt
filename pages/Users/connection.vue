@@ -10,8 +10,9 @@
             <div class="card-body">
                 <div class="row d-flex mr-auto" ref="body">
                     <div  v-for="(sess) in wa_sessions" :key="sess._id">
-                        <cards v-if="sess.ready" :session_status="statuses" :title="sess._id" :sid="sess._id" :desc="sess.description" imgSrc="https://docs.vuejs.id/images/logo.png" btnClass='btn btn-primary'>Hello</cards>
-                        <cards v-else :session_status="statuses" :title="sess._id" :sid="sess._id" :desc="sess.description" :imgSrc="qrSrc[sess._id]" btnClass='btn btn-primary'>Hello</cards>
+                        <!-- <cards v-if="sess.ready" :session_status="statuses" :title="sess._id" :sid="sess._id" :desc="sess.description" imgSrc="https://docs.vuejs.id/images/logo.png" btnClass='btn btn-primary'>Hello</cards>
+                        <cards v-else :session_status="statuses" :title="sess._id" :sid="sess._id" :desc="sess.description" :imgSrc="qrSrc[sess._id]" btnClass='btn btn-primary'>Hello</cards> -->
+                        <cards :session_status="statuses" :title="sess._id" :sid="sess._id" :desc="sess.description" :imgSrc="qrSrc[sess._id]" btnClass='btn btn-primary'>Hello</cards>
                     </div>
                     <!-- <cards v-for="sess in wa_sessions" :key="sess._id" v-bind:imgSrc="testSrc['qewan']" btnClass='btn btn-primary'>Hello</cards> -->
                 </div>
@@ -84,9 +85,11 @@ export default {
         })
 
         io.on('qr',(qr)=>{
-            // this.testSrc['qewan'] = qr.src;
-            this.$set(this.qrSrc, qr.id, qr.src)
-            // console.log(qr);
+
+            if(this.wa_sessions.length > 0){
+                const check = this.wa_sessions.filter((sess)=> sess._id == qr.id ?? false );
+                if (check.length) this.$set(this.qrSrc, qr.id, qr.src);
+            }
         })
 
         io.on('create-client',async (client)=>{

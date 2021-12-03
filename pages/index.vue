@@ -1,25 +1,30 @@
 <template>
   <div class="container">
     <div>
-      <img src="/wa-favicon.svg" alt="nuxty" style="width:50%">
+      <img src="/wa-favicon.svg" alt="nuxty" style="width:50%" />
       <h1 class="title">
         whatlabs-nuxt
       </h1>
       <div class="links">
-        <NuxtLink to="/login" class="btn btn-outline-primary" v-if="!isAuthenticated">Login</NuxtLink>
+        <NuxtLink
+          to="/login"
+          class="btn btn-outline-primary"
+          v-if="!isAuthenticated"
+          >Login</NuxtLink
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
 export default {
-  computed:{
-      ...mapGetters(['isAuthenticated'])
+  computed: {
+    ...mapGetters(['isAuthenticated'])
   },
-  auth:false
+  auth: false
 }
 </script>
 
@@ -34,16 +39,8 @@ export default {
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;

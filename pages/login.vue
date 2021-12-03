@@ -49,7 +49,8 @@
                                             <a class="small" href="forgot-password.html">Forgot Password?</a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="small" href="register.html">Create an Account!</a>
+                                            <!-- <a class="small" href="register.html"></a> -->
+                                            <NuxtLink to="/registration" class="small" v-if="!isAuthenticated">Create an Account!</NuxtLink>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +66,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
+    mounted(){
+        this.$notify({
+            group: 'foo',
+            title: 'Important message',
+            text: "password harus sama dengan confirm password"
+        });
+    },
+    computed:{
+        ...mapGetters(['isAuthenticated'])
+    },
     layout:'auth',
     auth:false,
     middleware:'guest',
@@ -91,7 +104,8 @@ export default {
                     this.$notify({
                         group: 'foo',
                         title: 'Important message',
-                        text: response.data.message
+                        text: response.data.message,
+                        type:'error'
                     })
                 }
                     

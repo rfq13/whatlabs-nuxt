@@ -1,0 +1,16 @@
+.nwa-system-mode {
+  background-color: #ffffff;
+  /* color: #ebf4f1; */
+}
+.nwa-dark-mode {
+  background-color: #091a28;
+  color: #ebf4f1;
+}
+.nwa-sepia-mode {
+  background-color: #f1e7d0;
+  color: #433422;
+}
+.nwa-light-mode {
+  background-color: #8f6d1e;
+  color: #433422;
+}

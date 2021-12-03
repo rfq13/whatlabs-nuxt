@@ -44,7 +44,7 @@
                                 </b-row>
                                 <b-row>
                                     <b-col lg="6">
-                                        <b-badge href="javascript:void(0)" variant="primary" class="capitalize">pertanyaan</b-badge>
+                                        <b-badge href="javascript:void(0)" variant="primary" class="capitalize">training phrase</b-badge>
                                         <b-icon @click.prevent="Create(`${i}|p`)" class="float-right" icon="plus-circle-fill" font-scale="1" aria-hidden="true"></b-icon>
                                         <b-list-group class="mt-2">
                                             <b-list-group-item button v-for="(p,k) in conv.pertanyaan" :key="k" @click="Edit(`${i}|p|${p}`)" class="d-flex justify-content-between align-items-center">
@@ -67,7 +67,7 @@
                                         </b-list-group>
                                     </b-col>
                                     <b-col lg="6">
-                                        <b-badge href="javascript:void(0)" variant="info" class="capitalize">jawaban</b-badge>
+                                        <b-badge href="javascript:void(0)" variant="info" class="capitalize">output</b-badge>
                                         <b-icon @click.prevent="Create(`${i}|j`)" class="float-right" icon="plus-circle-fill" font-scale="1" aria-hidden="true"></b-icon>
                                         <b-list-group class="mt-2">
                                             <b-list-group-item button v-for="(p,k) in conv.jawaban" :key="k" @click="Edit(`${i}|j|${p}`)" class="d-flex justify-content-between align-items-center">

@@ -10,45 +10,42 @@ export default {
       lang: 'en'
     },
     bodyAttrs: {
-      class:"bg-gradient-primary"
+      class: 'bg-gradient-primary'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/wa-favicon.svg' }
-    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/wa-favicon.svg' }],
     script: [
       {
-        src:"/vendor/jquery/jquery.min.js",
+        src: '/vendor/jquery/jquery.min.js',
         type: 'text/javascript'
       },
       {
-        src:"/vendor/bootstrap/js/bootstrap.bundle.min.js",
+        src: '/vendor/bootstrap/js/bootstrap.bundle.min.js',
         type: 'text/javascript'
       },
       {
-        src:"/vendor/jquery-easing/jquery.easing.min.js",
+        src: '/vendor/jquery-easing/jquery.easing.min.js',
         type: 'text/javascript'
-      },
+      }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    // '@/assets/css/architect-ui.css',
+    '@/assets/css/color-mode.css',
     '@/assets/vendor/fontawesome-free/css/all.min.css',
-    '@/assets/css/sb-admin-2.min.css',
-
+    '@/assets/css/sb-admin-2.min.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    {src:'~/plugins/vue-notification.js',ssr:false},
-    {src:'~/plugins/vue-eventhub.js',ssr:false},
-    {src:'~/plugins/vue-inline-edit.js',ssr:false},
+    { src: '~/plugins/vue-notification.js', ssr: false },
+    { src: '~/plugins/vue-eventhub.js', ssr: false },
+    { src: '~/plugins/vue-inline-edit.js', ssr: false }
     // {src:'~/plugins/axios.js'}
   ],
 
@@ -56,9 +53,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    '@nuxtjs/color-mode',
-  ],
+  buildModules: ['@nuxtjs/color-mode'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -66,7 +61,7 @@ export default {
     '@nuxtjs/auth-next',
     // '@nuxtjs/bootstrap-vue',
     'nuxt-socket-io',
-    'bootstrap-vue/nuxt',
+    'bootstrap-vue/nuxt'
   ],
   bootstrapVue: {
     icons: true
@@ -78,37 +73,46 @@ export default {
           property: 'token',
           required: true,
           type: 'Bearer',
-          maxAge:false,
+          maxAge: false
         },
         user: {
-          property: 'user',
+          property: 'user'
           // autoFetch: true
         },
         endpoints: {
-          login: { url: '/login', method: 'post', propertyName:'token' },
+          login: { url: '/login', method: 'post', propertyName: 'token' },
           logout: false,
           user: { url: '/user', method: 'get' }
         }
       }
     }
   },
-  axios:{
-    baseURL:'http://localhost:4000'
+  axios: {
+    baseURL: 'http://localhost:4000'
   },
   io: {
     // module options
-    sockets: [{
-      name: 'main',
-      url: 'http://localhost:4000'
-    }]
+    sockets: [
+      {
+        name: 'main',
+        url: 'http://localhost:4000'
+      }
+    ]
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
+  build: {},
+  colorMode: {
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'light', // fallback value if not system preference found
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '-mode',
+    storageKey: 'nuxt-color-mode'
   },
-
   router: {
     middleware: ['auth'],
     linkActiveClass: 'active'
-  },
-  
+  }
 }
