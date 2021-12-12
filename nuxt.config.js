@@ -1,4 +1,5 @@
 export default {
+  ssr: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
   server: {
     port: 8000 // bawaan: 3000
@@ -45,7 +46,8 @@ export default {
   plugins: [
     { src: '~/plugins/vue-notification.js', ssr: false },
     { src: '~/plugins/vue-eventhub.js', ssr: false },
-    { src: '~/plugins/vue-inline-edit.js', ssr: false }
+    { src: '~/plugins/vue-inline-edit.js', ssr: false },
+    { src: '~/plugins/helpers.js', ssr: false }
     // {src:'~/plugins/axios.js'}
   ],
 
