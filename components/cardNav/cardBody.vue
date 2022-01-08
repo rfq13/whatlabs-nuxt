@@ -1,6 +1,5 @@
 <template>
   <div class="pb-3">
-    <div v-if="mode == `b1`">
       <b-row>
         <b-col>
           <b-card-title>Conversations</b-card-title>
@@ -163,33 +162,8 @@
             </b-card-group>
           </div>
         </b-row>
-        <b-button variant="primary" @click.prevent="cekConv(mode)"
-          >Go somewhere</b-button
-        >
+        
       </b-container>
-    </div>
-    <div v-else-if="mode == `b2`">
-      <b-card-title>Card Judul</b-card-title>
-
-      <b-card-text>
-        With supporting text below as a natural lead-in to additional content.
-      </b-card-text>
-
-      <b-button variant="warning" @click.prevent="cekConv(mode)"
-        >Go somewhere</b-button
-      >
-    </div>
-    <div v-else>
-      <b-card-title>Card Aran</b-card-title>
-
-      <b-card-text>
-        With supporting text below as a natural lead-in to additional content.
-      </b-card-text>
-
-      <b-button variant="success" @click.prevent="cekConv(mode)"
-        >Go somewhere</b-button
-      >
-    </div>
   </div>
 </template>
 
@@ -253,6 +227,7 @@ export default {
     this.init()
   },
   mounted() {
+    console.log(this.conversations);
     this.init()
   },
   methods: {

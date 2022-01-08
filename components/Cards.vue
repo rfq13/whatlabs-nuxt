@@ -3,14 +3,12 @@
         <div class="card" style="width: 18rem;">
             <img :src="imgSrc" class="card-img-top" :alt="imgSrc">
             <div class="card-body">
-                <h5 class="card-title">{{ title }}</h5>
+                <h5 class="card-title">{{ title }} test</h5>
                 <p class="card-text">{{ desc }}</p>
-                <a href="#" :class="btnClass" @click.prevent="sayHi()">
-                    <slot/>
-                </a>
-                <a href="#" :class="btnCloseClass" @click.prevent="closecard(sid)">
+                <a href="javascript:void(0)" :class="`${btnCloseClass} float-right`" @click.prevent="closecard(sid)">
                     <i class="fas fa-times"></i>
                 </a>
+                <br>
                 
                     <ul class="list-group mt-3">
                         <div v-for="(stat,i) in session_status" :key="i">
@@ -76,9 +74,6 @@ export default {
     methods: {
         closecard(id) {
             this.$eventHub.emit('closecard',id);
-        },
-        sayHi() {
-            alert('hai joel!');
         },
     },
 }

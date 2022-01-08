@@ -52,7 +52,9 @@ export default {
     return {
       qrSrc: {},
       thanksMessage: '',
-      statuses: {}
+      statuses: {},
+      // connectedImg:"http://simpleicon.com/wp-content/uploads/cloud-connection-2.png"
+      connectedImg:"https://icons-for-free.com/iconfiles/png/512/communication+media+messenger+phone+social+speech+bubble+whatsapp-1320137108186587722.png"
     }
   },
   components: {
@@ -111,7 +113,7 @@ export default {
     })
 
     io.on('authenticated', async (id) => {
-      this.$set(this.qrSrc, id, 'https://docs.vuejs.id/images/logo.png')
+      this.$set(this.qrSrc, id, this.connectedImg)
     })
 
     vm.$eventHub.on('closecard', (sessID) => {

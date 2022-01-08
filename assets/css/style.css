@@ -1,0 +1,19 @@
+.invisible-form-control:focus,
+.invisible-form-control:active {
+  background: transparent;
+  border: none;
+  outline: 0px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+}
+
+.invisible-form-control[readonly] {
+  background-color: transparent;
+  border: 0;
+  font-size: 1em;
+}
+
+.invisible-form-control {
+  background-color: transparent;
+  border: none;
+}

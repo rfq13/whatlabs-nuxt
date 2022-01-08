@@ -3,7 +3,7 @@
     <div>
       <img src="/wa-favicon.svg" alt="nuxty" style="width:50%" />
       <h1 class="title">
-        whatlabs-nuxt
+        whatlabs
       </h1>
       <div class="links">
         <NuxtLink
