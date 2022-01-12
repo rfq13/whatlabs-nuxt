@@ -92,14 +92,14 @@ export default {
     }
   },
   axios: {
-    baseURL: 'http://localhost:4000'
+    baseURL: 'https://api.whatlucks.my.id'
   },
   io: {
     // module options
     sockets: [
       {
         name: 'main',
-        url: 'http://localhost:4000'
+        url: 'https://api.whatlucks.my.id'
       }
     ]
   },
